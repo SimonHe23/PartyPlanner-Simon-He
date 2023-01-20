@@ -4,6 +4,11 @@
  * @date 2023-01-19
  */
 
+/**
+ * There are many getter and setter functions in this class, 
+ * where the data types in a List or Array list are split into the desired data types.
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 
