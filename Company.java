@@ -1,13 +1,12 @@
-
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @Simon
  * @description this file is mainly dealing with company, including identifying the company, counting the number of people in the company, etc.
  * @date 2023-01-19
  */
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Company {
     /**
      * The id used to identify the company
