@@ -4,9 +4,6 @@
  * @date 2023-01-19
  */
 
-/**
- * this program is designed at IDEA platform, and it will not work at replit or geany( I don't know why, but I tried)
- */
 
 
 import java.io.File;
