@@ -4,6 +4,10 @@
  * @date 2023-01-19
  */
 
+/**
+ * This class works just like Main and Tester, it is the first class to be run when the program runs, 
+ * where it scans the file (txt file), creates the "menu" and reacts differently to the user's choices.
+*/
 
 import java.io.File;
 import java.io.FileNotFoundException;
