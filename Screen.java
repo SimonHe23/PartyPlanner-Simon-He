@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class Screen { //this is the tester/main class
+public class Screen { //this is the tester/main class call the order to Employee and Companies file.
     /**
      * The table and its position the first one is the table and the second one is the position
      */
