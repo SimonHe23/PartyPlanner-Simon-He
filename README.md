@@ -1,4 +1,6 @@
 # PartyPlanner-Simon-He
-AP CS A Project
+This is an AP CS A Project
+//fd
 ***
-* hi
+* Program
+* fd
