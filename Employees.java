@@ -4,6 +4,12 @@
  * @description this file is mainly deal with Employee, including table arrangement, etc.
  * @date 2023-01-19
  */
+
+/**
+ * There are also many getter and setter functions in this file, 
+ * /which also split the data types in the List or Array list 
+ * into the desired data types, and the data processing of the seats.
+*/
 public class Employees {
     private Integer companyId;
     private String name;
