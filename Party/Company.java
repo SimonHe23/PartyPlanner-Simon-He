@@ -1,0 +1,70 @@
+/**
+ * @Simon
+ * @description this file is mainly dealing with company, including identifying the company, counting the number of people in the company, etc.
+ * @date 2023-01-19
+ */
+
+/**
+ * There are many getter and setter functions in this class, 
+ * where the data types in a List or Array list are split into the desired data types.
+*/
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Company {
+    /**
+     * The id used to identify the company
+     */
+    private int id;
+    private String name;
+    private ArrayList<Employees> numberEmployees;
+
+    public Company() {
+
+        numberEmployees=new ArrayList<>();
+    }
+
+    public Company(int id, String name) { //constructor
+        this.id = id;
+        this.name = name;
+        numberEmployees=new ArrayList<>();
+    }
+
+    public Integer getId() { //getter method
+
+        return id;
+    }
+
+    public void setId(int id) {//setter method
+
+        this.id = id;
+    }
+
+    public String getName() { //getter
+
+        return name;
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
+    }
+
+    public ArrayList<Employees> getNumberEmployees() {
+
+        return numberEmployees;
+    }
+
+    public void setNumberEmployees(ArrayList<Employees> numberEmployees) {
+
+        this.numberEmployees = numberEmployees;
+    }
+    public void addEmployees(Employees employees){
+        if (this.numberEmployees.size()>=10){
+            System.out.println("The company shall have no more than 10 employees");
+        }else{
+            this.numberEmployees.add(employees);
+        }
+    }
+}
