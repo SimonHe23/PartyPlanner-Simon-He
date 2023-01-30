@@ -36,7 +36,7 @@ public class Screen { //this is the tester/main class call the order to Employee
         System.out.println("There is an employee list containing 90 people, you can add employee by put their name and company ID, them you could rearrange the seating chart");
         System.out.println("That's it! Hope you have fun!");
         // Initialization variable
-        companies = new ArrayList<>();
+        companies = new ArrayList<Company>();
         table = new Employees[10][10];
         // Read company information
         try {
@@ -113,9 +113,11 @@ public class Screen { //this is the tester/main class call the order to Employee
     public static void printTable() {
         // Traversal table
         for (int i = 0; i < table.length; i++) {
-            System.out.print("table id: " + i);
+            System.out.print("table id: " + i+"  ");
             // Walk through the table from 0 to 9 by serial number
             for (int j = 0; j < table.length; j++) {
+                // Get the employees in the position and determine if there are employees already scheduled.
+                // If there are, print. If not, print empty.
                 Employees employees = table[i][j];
                 if (employees != null) {
                     System.out.print(employees.getName() + " Company ID:" + employees.getCompanyId() + "    ");
@@ -123,6 +125,8 @@ public class Screen { //this is the tester/main class call the order to Employee
                     System.out.print(" Empty!    ");
                 }
             }
+            // Line feed after printing a table Easy to view and identify different tables
+            System.out.println();
             System.out.println();
         }
     }
@@ -133,13 +137,17 @@ public class Screen { //this is the tester/main class call the order to Employee
     public static void checkTable() {
         int total = 0;
         for (int i = 0; i < table.length; i++) {
+            // Count how many seats have been arranged for the i-th table
             int row = 0;
             for (int j = 0; j < table.length; j++) {
+                // Get the employee at the jth position of the i-th table
                 Employees employees = table[i][j];
+                // determine whether the employee is empty, not empty means that the position is already occupied
                 if (employees != null) {
                     row++;
                 }
             }
+            //Total number of people counted
             total += row;
             System.out.println("table ID:" + i + "  The number is  " + row);
         }
@@ -153,12 +161,17 @@ public class Screen { //this is the tester/main class call the order to Employee
         System.out.println("Enter the company ID for which you want to print employee information(1-16)");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
+        // traverse all companies
         for (Company company : companies) {
+            // determine if the company id is the same as the one entered
             if (company.getId() == id) {
-                company.getNumberEmployees()
-                        .forEach(employees -> System.out.println("Name of employee:" + employees.getName()
-                                + " Table ID:" + employees.getTable() + " Position number:" + employees.getPosition()
-                                + " Company ID:" + employees.getCompanyId()));
+                ArrayList<Employees> numberEmployees = company.getNumberEmployees();
+                // traverse all employees of the company
+                for (Employees employees : numberEmployees) {
+                    System.out.println("Name of employee:" + employees.getName()
+                            + " Table ID:" + employees.getTable() + " Position number:" + employees.getPosition()
+                            + " Company ID:" + employees.getCompanyId());
+                }
             }
         }
     }
@@ -166,20 +179,21 @@ public class Screen { //this is the tester/main class call the order to Employee
     /**
      * Randomly generate n lists of different numbers
      */
-    public static List getRandomNumList(int nums, int start, int end) { //nums: random numbers to generate, start: the start of random numbers, end: the end of the random numbers
-        List list = new ArrayList();
+    public static ArrayList<Integer> getRandomNumList(int nums, int start, int end) { //nums: random numbers to generate, start: the start of random numbers, end: the end of the random numbers
+        ArrayList<Integer> randomlArraylist = new ArrayList<Integer>();
         Random r = new Random();
         // If the random number does not exist in the set, the random number will be put
         // into the set; if it does exist,
         // the random number will be discarded without any operation,
         // and the next cycle will be carried out until the set length is equal to nums
-        while (list.size() != nums) {
+        while (randomlArraylist.size() != nums) {
+            // Determine the range of random number size generation
             int num = r.nextInt(end - start) + start;
-            if (!list.contains(num)) {
-                list.add(num);
+            if (!randomlArraylist.contains(num)) {
+                randomlArraylist.add(num);
             }
         }
-        return list;
+        return randomlArraylist;
     }
 
     /**
@@ -207,7 +221,9 @@ public class Screen { //this is the tester/main class call the order to Employee
         String name = scanner.next();
         // Traversal to find employee location
         for (Company company : companies) {
-            for (Employees employees : company.getNumberEmployees()) {
+            ArrayList<Employees> numberEmployees = company.getNumberEmployees();
+            for (Employees employees : numberEmployees ) {
+                // Determine if the name is the same as the input name, if it is, output and stop the loop
                 String employeesName = employees.getName();
                 if (name.equals(employeesName)) {
                     System.out.println("name:" + employeesName + " table id:" + employees.getTable()
@@ -220,23 +236,28 @@ public class Screen { //this is the tester/main class call the order to Employee
 
     public static void allocationPosition() {
       //reinitialize employee's information
+
       for (Company company:companies) {
-    company.getNumberEmployees().forEach(k->{
-        k.setArrange(false);
-        k.setPosition(-1);
-        k.setTable(-1);
-    });
-}
+          ArrayList<Employees> numberEmployees = company.getNumberEmployees();
+          //Reset all employee location information of the company
+          for (Employees numberEmployee : numberEmployees) {
+              numberEmployee.setArrange(false);
+              numberEmployee.setPosition(-1);
+              numberEmployee.setTable(-1);
+          }
+
+    }
       
       for (int i = 0; i < table.length; i++) {
             // Get 10 different random numbers between 0 and 16 as the company id to be
             // assigned, ensuring that only one company can have employees on a table
-            List<Integer> randomNumList = getRandomNumList(10, 0, 16);
+          ArrayList<Integer> randomNumList = getRandomNumList(10, 0, 16);
             // Assign staff positions at the JTH table
             for (int j = 0; j < table.length; j++) {
                 // Employee acquisition
                 Integer randomNum = randomNumList.get(j);
-                List<Employees> numberEmployees = companies.get(randomNum).getNumberEmployees();
+                // Get a random list of employees of a company
+                ArrayList<Employees> numberEmployees = companies.get(randomNum).getNumberEmployees();
                 Random random = new Random();
                 // No employee is not assigned a place
                 if (numberEmployees.size() != 0) {
@@ -244,6 +265,7 @@ public class Screen { //this is the tester/main class call the order to Employee
                     int randomEmp = random.nextInt(numberEmployees.size());
                     Employees employees = numberEmployees.get(randomEmp);
                     // Determine if a location is assigned
+                    // If the employee has already been assigned a position, the position will not be assigned
                     if (!employees.isArrange()) {
                         employees.setPosition(j);
                         employees.setTable(i);

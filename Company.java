@@ -16,16 +16,16 @@ public class Company {
     /**
      * The id used to identify the company
      */
-    private Integer id;
+    private int id;
     private String name;
-    private List<Employees> numberEmployees;
+    private ArrayList<Employees> numberEmployees;
 
     public Company() {
 
         numberEmployees=new ArrayList<>();
     }
 
-    public Company(Integer id, String name) { //constructor
+    public Company(int id, String name) { //constructor
         this.id = id;
         this.name = name;
         numberEmployees=new ArrayList<>();
@@ -36,7 +36,7 @@ public class Company {
         return id;
     }
 
-    public void setId(Integer id) {//setter method
+    public void setId(int id) {//setter method
 
         this.id = id;
     }
@@ -51,12 +51,12 @@ public class Company {
         this.name = name;
     }
 
-    public List<Employees> getNumberEmployees() {
+    public ArrayList<Employees> getNumberEmployees() {
 
         return numberEmployees;
     }
 
-    public void setNumberEmployees(List<Employees> numberEmployees) {
+    public void setNumberEmployees(ArrayList<Employees> numberEmployees) {
 
         this.numberEmployees = numberEmployees;
     }

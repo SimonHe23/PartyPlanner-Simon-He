@@ -11,16 +11,16 @@
  * into the desired data types, and the data processing of the seats.
 */
 public class Employees {
-    private Integer companyId;
+    private int companyId;
     private String name;
     /**
      * Table marking
      */
-    private Integer table;
+    private int table;
     /**
      * Mark the seat number
      */
-    private Integer position;
+    private int position;
     /**
      * Flags whether the location is arranged. The default is false
      */
@@ -41,7 +41,7 @@ public class Employees {
         isArrange = arrange;
     }
 
-    public Employees(Integer companyId, String name) {
+    public Employees(int companyId, String name) {
         this.companyId = companyId;
         this.name = name;
 
@@ -52,7 +52,7 @@ public class Employees {
         return table;
     }
 
-    public void setTable(Integer table) { //setter
+    public void setTable(int table) { //setter
 
         this.table = table;
     }
@@ -67,7 +67,7 @@ public class Employees {
         return companyId;
     }
 
-    public void setCompanyId(Integer companyId) {
+    public void setCompanyId(int companyId) {
 
         this.companyId = companyId;
     }
@@ -77,7 +77,7 @@ public class Employees {
         return position;
     }
 
-    public void setPosition(Integer position) {
+    public void setPosition(int position) {
 
         this.position = position;
     }
